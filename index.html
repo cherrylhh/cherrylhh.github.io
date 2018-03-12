@@ -285,28 +285,34 @@
 <li>Node.js</li>
 <li>Git</li>
 </ul>
-<h3 id="Github-Pages创建"><a href="#Github-Pages创建" class="headerlink" title="Github Pages创建"></a>Github Pages创建</h3><p>首先登录你的github帐号，创建一个仓库，仓库名字必须按照 <strong>yourname.github.io</strong> 格式命名。</p>
+<h3 id="Github-Pages创建"><a href="#Github-Pages创建" class="headerlink" title="Github Pages创建"></a>Github Pages创建</h3><p>首先登录你的github帐号，创建一个仓库，仓库名字必须按照 <em>yourname.github.io</em> 格式命名。</p>
 <img src="/2018/03/07/hexo/git.png">
 <h3 id="Hexo服务搭建"><a href="#Hexo服务搭建" class="headerlink" title="Hexo服务搭建"></a>Hexo服务搭建</h3><ul>
-<li><p>安装hexo服务</p>
+<li><p><strong>安装hexo服务</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install hexo -g</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>建站（初始化一个blog并启动服务［blog可自定义，默认使用blog］）</p>
+<li><p><strong>建站</strong>（初始化一个blog并启动服务［blog可自定义，默认使用blog］）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init blog</span><br><span class="line">$ <span class="built_in">cd</span> blog</span><br><span class="line">$ npm install</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <img src="/2018/03/07/hexo/server.png">
 <ul>
-<li><p>安装nextT主题<br>NexT 是一个高质量并且优雅的Hexo主题。</p>
-<p>终端切换到hexo根目录，然后执行以下命令。(参照<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">iissnan</a>搭建)</p>
+<li><p><strong>安装nextT主题</strong><br>NexT 是一个高质量并且优雅的Hexo主题。<br>终端切换到hexo根目录，然后执行以下命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir themes/next</span><br><span class="line">$ curl -s https://api.github.com/repos/iissnan/hexo-theme-next/releases/latest | grep tarball_url | cut -d <span class="string">'"'</span> -f 4 | wget -i - -O- | tar -zx -C themes/next --strip-components=1</span><br></pre></td></tr></table></figure>
 <p>tips: 因为笔者自己没有安装wget，在执行下载过程中出现了报错，如果你也出现了同样的错误提示，建议安装以下命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install wget --with-libressl</span><br></pre></td></tr></table></figure>
-<p> More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<p> More info: <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">iissnan</a></p>
 </li>
-<li><p>关联Github Pages</p>
+<li><p><strong>新建文章</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new blogname</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>切换到hexo服务根目录下，找到 <strong>_config.yml</strong> 文件并配置字段 <strong>repo</strong> 为自己的Github Pages指向的地址</p>
+<p>文章图片资源文件，可以放在同名目录文件夹内（需要在 <em>_config.yml</em> 文件里修改 <em>post_asset_folder</em> 字段，设置为true开启新建文章时自动创建同名资源文件夹）</p>
+</blockquote>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+</li>
+<li><p><strong>关联Github Pages</strong></p>
+<blockquote>
+<p>切换到hexo服务根目录下，找到 <em>_config.yml</em> 文件并配置字段 <em>repo</em> 为自己的Github Pages指向的地址</p>
 <pre><code>deploy:
   type: git
   repo: https://github.com/cherrylhh/cherrylhh.github.io.git
@@ -316,6 +322,12 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 </li>
+<li><strong>发布到Github Pages服务器</strong><blockquote>
+<pre><code>hexo clean
+hexo g
+hexo d
+</code></pre></blockquote>
+上面命令依次表示清除缓存，生成静态文件，上传部署到Github Pages。<br> More info: <a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">Commands</a></li>
 </ul>
 
           
